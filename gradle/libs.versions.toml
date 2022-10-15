@@ -1,0 +1,9 @@
+[versions]
+build-checkstyle = "8.2"
+
+[libraries]
+build-nexus-plugin = "io.github.gradle-nexus:publish-plugin:1.1.0"
+build-shadow-plugin = "gradle.plugin.com.github.johnrengelman:shadow:7.1.0"
+
+[plugins]
+pluginpublish = "com.gradle.plugin-publish:1.0.0"
