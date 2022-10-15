@@ -1,9 +1,24 @@
 [versions]
-build-checkstyle = "8.2"
+checkstyle = "8.2"
+errorpronePlugin = "2.0.2"
+
+compileJdkVersion = "17"  # JDK version used for compilation
+# Language level used for compilation. Java 17 introduces sealed classes that may not be supported in Jabel, so we stick
+# with 16 for now
+sourceJavaVersion = "16"
+runtimeJdkVersion = "8"  # JDK version used at runtime, determines available APIs
 
 [libraries]
+build-errorprone-core = "com.google.errorprone:error_prone_core:2.10.0"
+build-errorprone-javac = "com.google.errorprone:javac:9+181-r4173-1"
+build-errorprone-plugin = { module = "net.ltgt.gradle:gradle-errorprone-plugin", version.ref = "errorpronePlugin" }
+build-jabel = "com.github.bsideup.jabel:jabel-javac-plugin:0.4.1"
+build-nullaway = "com.uber.nullaway:nullaway:0.9.8"
 build-nexus-plugin = "io.github.gradle-nexus:publish-plugin:1.1.0"
 build-shadow-plugin = "gradle.plugin.com.github.johnrengelman:shadow:7.1.0"
+checkerframeworkAnnotations = "org.checkerframework:checker-qual:3.21.1"
 
 [plugins]
+# Errorprone plugin allows to configure Errorprone compiler
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorpronePlugin" }
 pluginpublish = "com.gradle.plugin-publish:1.0.0"

@@ -26,6 +26,8 @@ repositories {
 // See https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+
+    implementation(libs.build.errorprone.plugin)
     implementation(libs.build.nexus.plugin)
     implementation(libs.build.shadow.plugin)
 }

@@ -17,9 +17,25 @@ package polygon
 
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
+import org.gradle.api.provider.Provider
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.the
 
 // Workaround to expose version catalog to script plugins.
 // See https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
 val Project.buildLibs: LibrariesForLibs
     get() = the()
+
+class JdkVersion(private val provider: Provider<String>) {
+    val intProvider
+        get() = provider.map { it.toInt() }
+
+    val int
+        get() = intProvider.get()
+
+    val string
+        get() = provider.get()
+
+    val languageVersion
+        get() = provider.map { JavaLanguageVersion.of(it) }
+}
